@@ -10,8 +10,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
-
-
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -37,8 +35,19 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 
+app.get('/', function (req, res, next) {
+  connection.query('SELECT * FROM forms', req.params.workshopPath, function (error, result, fields) {
+    if (error || result.length == 0) {
+      next(createError(404));
+      return;
+    }
+    let tasks = result.map(el => { return {title: el.form_title, form_id: el.jotform_id} })
+    console.log(result[0]);
+    res.render('formselect', { title: 'FormBuilder', tasks: tasks });
+  })
+});
 
 
 app.post('/generate_workshop', function (req, res, next) {
@@ -64,7 +73,7 @@ app.post('/generate_workshop', function (req, res, next) {
 });
 
 app.get('/workshops/:workshopPath', function (req, res, next) {
-  try{
+  try {
     if (!req.params.workshopPath) throw new Error('Invalid URL');
     connection.query('SELECT * FROM generated_workshops WHERE path = ? ', req.params.workshopPath, function (error, result, fields) {
       if (error || result.length == 0) {

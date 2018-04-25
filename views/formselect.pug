@@ -11,6 +11,7 @@ block headscript
         $( '#sortable1, #sortable2' ).disableSelection();
 
         $('#submit').click(function(){
+          $('#submit').attr("disabled", "disabled");
           let error = false;
           let title = $('input#title').val();
           let sortedIDs = $( "#sortable1" ).sortable( "toArray" );
@@ -48,14 +49,21 @@ block headscript
               console.log( data );
               if (data.success == true){
                 window.location = data.path;                
+              } else {
+                alert('Failed to create the workshop');
+                $('#submit').removeAttr("disabled");
               }
             })
             .fail(function() {
               console.log( "error" );
+              alert('Failed to create the workshop');
+              $('#submit').removeAttr("disabled");
             })
             .always(function() {
               console.log( "complete" );
             });
+          } else {
+            $('#submit').removeAttr("disabled");
           }
         });
     });
@@ -100,11 +108,8 @@ block content
             div(class='title') Possible Tasks
             div(class='description') Select the tasks you want and drag them to the box on the left
         ul(id='sortable2' class='droptrue')
-          li(class='ui-state-default draggable' id='test1') test 1
-          li(class='ui-state-default draggable' id='test2') test 2
-          li(class='ui-state-default draggable' id='test3') test 3
-          li(class='ui-state-default draggable' id='test4') test 4    
-
+          each task in tasks
+            li(class='ui-state-default draggable' id=task.form_id)= task.title
 
       br(style='clear:both')
       
