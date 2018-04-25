@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="//js.jotform.com/JotFormCustomWidget.min.js"></script>
-    </head>
-    <body>
-        <div id="main">
-            <h3>This is my first widget.</h3>
-            <span id="labelText"></span>
-            <input type="text" id="userInput">
-        </div>
-        <script type="text/javascript">
-            //always subscribe to ready event and implement widget related code
-            //inside callback function , it is the best practice while developing widgets
-            JFCustomWidget.subscribe("ready", function(){
-                var label = JFCustomWidget.getWidgetSetting('QuestionLabel');
-                document.getElementById('labelText').innerHTML = label;
-                //subscribe to form submit event
-                JFCustomWidget.subscribe("submit", function(){
-                    var msg = {
-                        //you should valid attribute to data for JotForm
-                        //to be able to use youw widget as required
-                        valid: true,
-                        value: document.getElementById('userInput').value
+
+<head>
+    <script src="//js.jotform.com/JotFormCustomWidget.min.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <input type="file" accept="image/*" capture="camera" id='cameraUpload'>
+    </div>
+    <script type="text/javascript">
+        //always subscribe to ready event and implement widget related code
+        //inside callback function , it is the best practice while developing widgets
+        JFCustomWidget.subscribe("ready", function () {
+            var label = JFCustomWidget.getWidgetSetting('QuestionLabel');
+            document.getElementById('labelText').innerHTML = label;
+            //subscribe to form submit event
+            JFCustomWidget.subscribe("submit", function () {
+                if ($('#cameraUpload').files && $('#cameraUpload').files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#falseinput').attr('src', e.target.result);
+                        var data = {
+                            valid: e.target.result.length === 0 ? false : true, //if photo is empty it is not valid
+                            value: e.target.result
+                        }
+                        JFCustomWidget.sendSubmit(data);
+                    };
+                    reader.readAsDataURL($('#cameraUpload').files[0]);
+                } else {
+                    var data = {
+                        valid: false,
+                        value: ''
                     }
-                    // send value to JotForm
-                    JFCustomWidget.sendSubmit(msg);
-                });
+                    JFCustomWidget.sendSubmit(data);
+                }
             });
-        </script>
-    </body>
+
+            $("input[type=file]#cameraUpload").change(function () {
+                if ($('#cameraUpload').files && $('#cameraUpload').files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#falseinput').attr('src', e.target.result);
+                        var data = {
+                            valid: e.target.result.length === 0 ? false : true, //if photo is empty it is not valid
+                            value: e.target.result
+                        }
+                        JFCustomWidget.sendData(data);
+                    };
+                    reader.readAsDataURL($('#cameraUpload').files[0]);
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = '//js.jotform.com/JotFormCustomWidget.min.js?onload=onLoadCallback';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+</body>
+
 </html>
