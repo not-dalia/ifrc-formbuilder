@@ -5,31 +5,46 @@ block headscript
     $(document).ready(function () {
         $( 'ul.droptrue' ).sortable({
           connectWith: 'ul',
-          dropOnEmpty: true
+          dropOnEmpty: true,
+          start: function(e, ui){
+            $('#sortable1').removeClass('error');
+            $('#sortable .validation').addClass('hide');
+          }
         });
 
         $( '#sortable1, #sortable2' ).disableSelection();
+
+        $('input#title').change(function(){
+            $('input#title').removeClass('error');          
+            $('#workshop-title .validation').addClass('hide');          
+        })
 
         $('#submit').click(function(){
           $('#submit').attr("disabled", "disabled");
           let error = false;
           let title = $('input#title').val();
-          let sortedIDs = $( "#sortable1" ).sortable( "toArray" );
+          //- let sortedIDs = $( "#sortable1" ).sortable( "toArray" );
+          let sortedIDs = $("#sortable1 .ui-state-default").map(function() {        
+              return {id: this.id, name: $(this).text()};        
+          }).get();
           console.log(sortedIDs);
 
           if (!title) {
-            $('#workshop-title .validation').show();
+            $('#workshop-title .validation').removeClass('hide');
+            $('input#title').addClass('error');          
+
             error = true;
           } else {
-            $('#workshop-title .validation').hide();
+            $('#workshop-title .validation').addClass('hide');
+            $('input#title').removeClass('error');          
           }
 
           if (sortedIDs.length == 0) {
-            $('#sortable .validation').show();
+            $('#sortable .validation').removeClass('hide');
             $('#sortable1').addClass('error');
             error = true;
           } else {
-            $('#sortable .validation').hide();
+            $('#sortable .validation').addClass('hide');
             $('#sortable1').removeClass('error');
           }
 
@@ -75,10 +90,10 @@ block content
       div(class='label')
         div(class='title') Workshop Title
         div(class='description') Enter a title for the workshop 
-        div(class='validation hide') Please enter a title 
         
       div 
         input(type='text' name='title' id='title')
+        div(class='validation hide') Please enter a title 
 
 
     div(id='workshop-language' class='form-element')  
@@ -113,7 +128,7 @@ block content
 
       br(style='clear:both')
       
-    button(id='submit') Submit
+    button.waves-effect.waves#submit Submit
   
 
 

@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
+
+
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -81,7 +83,7 @@ app.get('/workshops/:workshopPath', function (req, res, next) {
         return;
       }
       console.log(result[0]);
-      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks });
+      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path:  result[0].path, showHeaderLinks: true});
     })
   } catch (err) {
     next(createError(404));

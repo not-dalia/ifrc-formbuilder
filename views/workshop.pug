@@ -1,7 +1,34 @@
 extends layout
 
 block content
-  h1= title
-  ul
-    each val in tasks
-      li= val+'?language='+language
+  main
+    .container.center
+      h3.red-text(style="text-transform: uppercase;")= title
+      .row 
+        h6.light At various points during the workshop you will be asked to complete forms summarising your tasks. Visit the specified link when asked.
+      
+      each task in tasks
+        a.waves-effect.waves.task-button(href=task.id+'?language='+language)= task.name
+     
+
+  footer.page-footer.blue-grey.darken-3
+    .container
+      .section
+        // Icon Section
+        .row
+          .col.s12.m6
+            .icon-block
+              h2.center.red-text.text-lighten-1
+                i.material-icons phone_android
+              h5.center Submit Feedback
+              p.light
+                | Use our online form to quickly share what you're doing in workshops with the IFRC. Use the form to take pictures and upload text describing activities and your answers to them.
+          .col.s12.m6
+            .icon-block
+              h2.center.red-text.text-lighten-1
+                i.material-icons visibility
+              h5.center See What's Going On
+              p.light
+                | Head over to 
+                a(href='/workshops/'+path+'/feed/') 'Workshop Feed' 
+                | to see what's people are uploading in workshops as it happens. All of our pictures and messages are found here in one single stream.
