@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 
 
 
+
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -38,20 +39,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 
-
-app.post('/generate_workshop/', function (req, res, next) {
+app.post('/generate_workshop', function (req, res, next) {
   try {
-    if (!req.body.title || !req.body.language || req.body.tasks) throw new Error('Missing fields')
-    let path = req.body.name.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "") + Date.now();
+    if (!req.body.title || !req.body.language || !req.body.tasks) throw new Error('Missing fields')
+    let path = req.body.title.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "") + Date.now();
     let workshop = {
       workshop_name: req.body.title,
-      language: req.body.lnaguage,
+      language: req.body.language,
       selected_tasks: JSON.stringify({ tasks: req.body.tasks }),
       path: path
     }
@@ -76,13 +72,17 @@ app.get('/workshops/:workshopPath', function (req, res, next) {
         return;
       }
       console.log(result[0]);
-      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: result[0].selected_tasks });
+      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks });
     })
   } catch (err) {
     next(createError(404));
   }
 });
 
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {
