@@ -83,7 +83,23 @@ app.get('/workshops/:workshopPath', function (req, res, next) {
         return;
       }
       console.log(result[0]);
-      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path:  result[0].path, showHeaderLinks: true});
+      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path:  result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath});
+    })
+  } catch (err) {
+    next(createError(404));
+  }
+});
+
+app.post('/workshops/:workshopPath', function (req, res, next) {
+  try {
+    if (!req.params.workshopPath) throw new Error('Invalid URL');
+    connection.query('SELECT * FROM generated_workshops WHERE path = ? ', req.params.workshopPath, function (error, result, fields) {
+      if (error || result.length == 0) {
+        next(createError(404));
+        return;
+      }
+      console.log(result[0]);
+      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path:  result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath, thankYou: true});
     })
   } catch (err) {
     next(createError(404));

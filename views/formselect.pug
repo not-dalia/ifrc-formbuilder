@@ -85,50 +85,52 @@ block headscript
 
 
 block content
-  div(class="form-container")
-    div(id='workshop-title' class='form-element')  
-      div(class='label')
-        div(class='title') Workshop Title
-        div(class='description') Enter a title for the workshop 
-        
-      div 
-        input(type='text' name='title' id='title')
-        div(class='validation hide') Please enter a title 
-
-
-    div(id='workshop-language' class='form-element')  
-      div(class='label')
-        div(class='title') Workshop Language
-        div(class='description') Select the display language for the forms
-      div 
-        select(id='language')
-          option(value='en') English
-          option(value='fr') French
-          option(value='es') Spanish
-          option(value='ar') Arabic
-
-
-    div(id='sortable')
-      div(class='sortable-container')
-        div(class='sortable-label')
+  main
+    .container
+      div(class="form-container")
+        div(id='workshop-title' class='form-element')  
+          div(class='label')
+            div(class='title') Workshop Title
+            div(class='description') Enter a title for the workshop 
+            
           div 
-            div(class='title') Workshop Tasks
-            div(class='description') Drag and sort the tasks you want to include in the workshop here
-        ul(id='sortable1' class='droptrue')
-        div(class='validation hide') Please select at least one task
+            input(type='text' name='title' id='title')
+            div(class='validation hide') Please enter a title 
 
-      div(class='sortable-container')
-        div(class='sortable-label')
+
+        div(id='workshop-language' class='form-element')  
+          div(class='label')
+            div(class='title') Workshop Language
+            div(class='description') Select the display language for the forms
           div 
-            div(class='title') Possible Tasks
-            div(class='description') Select the tasks you want and drag them to the box on the left
-        ul(id='sortable2' class='droptrue')
-          each task in tasks
-            li(class='ui-state-default draggable' id=task.form_id)= task.title
+            select(id='language')
+              option(value='en') English
+              option(value='fr') French
+              option(value='es') Spanish
+              option(value='ar') Arabic
 
-      br(style='clear:both')
-      
-    button.waves-effect.waves#submit Submit
+
+        div(id='sortable')
+          div(class='sortable-container')
+            div(class='sortable-label')
+              div 
+                div(class='title') Workshop Tasks
+                div(class='description') Drag and sort the tasks you want to include in the workshop here
+            ul(id='sortable1' class='droptrue')
+            div(class='validation hide') Please select at least one task
+
+          div(class='sortable-container')
+            div(class='sortable-label')
+              div 
+                div(class='title') Possible Tasks
+                div(class='description') Select the tasks you want and drag them to the box on the left
+            ul(id='sortable2' class='droptrue')
+              each task in tasks
+                li(class='ui-state-default draggable' id=task.form_id)= task.title
+
+          br(style='clear:both')
+          
+        button.waves-effect.waves#submit Submit
   
 
 
