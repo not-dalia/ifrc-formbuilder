@@ -44,8 +44,20 @@ table {
 
 .description {
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 0.8em;
     color: #777;
+}
+
+.validation {
+  font-size: 0.8em;
+  color: red;
+  margin: 3px 0;
+
+}
+
+.validation.hide {
+  display: none;
+ 
 }
 
 #sortable .sortable-label>div {
@@ -69,6 +81,11 @@ table {
     width: 200px;
     min-height: 200px;
     margin-right: 10px;
+    border: 0px;
+}
+
+#sortable1.error{
+  border: 1px solid red;
 }
 
 #sortable1 li,
@@ -89,6 +106,7 @@ button#submit {
     height: 30px;
     border-radius: 3px;
     border: 1px solid #c4c4c4;
+    text-transform: uppercase;
 }
 
 button#submit:active {

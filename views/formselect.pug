@@ -11,8 +11,52 @@ block headscript
         $( '#sortable1, #sortable2' ).disableSelection();
 
         $('#submit').click(function(){
-          var sortedIDs = $( "#sortable1" ).sortable( "toArray" );
+          let error = false;
+          let title = $('input#title').val();
+          let sortedIDs = $( "#sortable1" ).sortable( "toArray" );
           console.log(sortedIDs);
+
+          if (!title) {
+            $('#workshop-title .validation').show();
+            error = true;
+          } else {
+            $('#workshop-title .validation').hide();
+          }
+
+          if (sortedIDs.length == 0) {
+            $('#sortable .validation').show();
+            $('#sortable1').addClass('error');
+            error = true;
+          } else {
+            $('#sortable .validation').hide();
+            $('#sortable1').removeClass('error');
+          }
+
+          if (!error){
+            let jqxhr = $.ajax({
+              url: "/generate_workshop",
+              method: 'POST',
+              data: JSON.stringify({
+                title: title,
+                language: $('select#language').val(),
+                tasks: sortedIDs
+              }),
+              contentType: 'application/json; charset=utf-8'
+              })
+            .done(function(data) {
+              console.log( "success" );
+              console.log( data );
+              if (data.success == true){
+                window.location = data.path;                
+              }
+            })
+            .fail(function() {
+              console.log( "error" );
+            })
+            .always(function() {
+              console.log( "complete" );
+            });
+          }
         });
     });
 
@@ -23,6 +67,8 @@ block content
       div(class='label')
         div(class='title') Workshop Title
         div(class='description') Enter a title for the workshop 
+        div(class='validation hide') Please enter a title 
+        
       div 
         input(type='text' name='title' id='title')
 
@@ -46,6 +92,8 @@ block content
             div(class='title') Workshop Tasks
             div(class='description') Drag and sort the tasks you want to include in the workshop here
         ul(id='sortable1' class='droptrue')
+        div(class='validation hide') Please select at least one task
+
       div(class='sortable-container')
         div(class='sortable-label')
           div 
@@ -56,6 +104,7 @@ block content
           li(class='ui-state-default draggable' id='test2') test 2
           li(class='ui-state-default draggable' id='test3') test 3
           li(class='ui-state-default draggable' id='test4') test 4    
+
 
       br(style='clear:both')
       
