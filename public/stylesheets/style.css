@@ -259,6 +259,8 @@ button#submit:hover {
 
 /**********************************************/
 
+.navbar-fixed { z-index: 9999; }
+.sidenav {z-index: 99999;}
 nav.header {
     height: 100px;
     line-height: 100px;
