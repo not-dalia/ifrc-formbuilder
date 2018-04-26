@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 
 
 
+
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -101,7 +102,7 @@ app.post('/workshops/:workshopPath', function (req, res, next) {
         return;
       }
       console.log(req.body);
-      res.redirect('/workshops/' + req.params.workshopPath + '?thankYou=true&avatar=' + encodeURIComponent(dbObj['avatar']));
+      res.redirect('/workshops/' + req.params.workshopPath.split(':')[1] + '?thankYou=true&avatar=' + encodeURIComponent(dbObj['avatar']));
     })
   } catch (err) {
     next(createError(500));

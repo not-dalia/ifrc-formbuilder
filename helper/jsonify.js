@@ -52,7 +52,7 @@ module.exports = function (data) {
         if (data[COMMON_DATA[i]] == null) return { error: true };
     }
     let dbObj = {
-        workshop_id: data['workshopid'], 
+        workshop_id: data['workshopid'].split(':')[0], 
         form_id: data['formID'], 
         submission_id: data['submission_id'], 
         avatar: data['avatar'], 
