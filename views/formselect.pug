@@ -23,6 +23,7 @@ block headscript
           $('#submit').attr("disabled", "disabled");
           let error = false;
           let title = $('input#title').val();
+          let location = $('input#location').val();
           //- let sortedIDs = $( "#sortable1" ).sortable( "toArray" );
           let sortedIDs = $("#sortable1 .ui-state-default").map(function() {        
               return {id: this.id, name: $(this).text()};        
@@ -37,6 +38,16 @@ block headscript
           } else {
             $('#workshop-title .validation').addClass('hide');
             $('input#title').removeClass('error');          
+          }
+
+          if (!location) {
+            $('#workshop-location .validation').removeClass('hide');
+            $('input#location').addClass('error');          
+
+            error = true;
+          } else {
+            $('#workshop-location .validation').addClass('hide');
+            $('input#location').removeClass('error');          
           }
 
           if (sortedIDs.length == 0) {
@@ -55,6 +66,7 @@ block headscript
               data: JSON.stringify({
                 title: title,
                 language: $('select#language').val(),
+                location: location,
                 tasks: sortedIDs
               }),
               contentType: 'application/json; charset=utf-8'
@@ -96,6 +108,15 @@ block content
           div 
             input(type='text' name='title' id='title')
             div(class='validation hide') Please enter a title 
+
+        div(id='workshop-location' class='form-element')  
+          div(class='label')
+            div(class='title') Workshop Location
+            div(class='description') Enter the workshop's location
+            
+          div 
+            input(type='text' name='location' id='location')
+            div(class='validation hide') Please enter a location 
 
 
         div(id='workshop-language' class='form-element')  

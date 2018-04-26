@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 
 
 
+
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -58,6 +59,7 @@ app.post('/generate_workshop', function (req, res, next) {
     let workshop = {
       workshop_name: req.body.title,
       language: req.body.language,
+      location: req.body.location,
       selected_tasks: JSON.stringify({ tasks: req.body.tasks }),
       path: path
     }
