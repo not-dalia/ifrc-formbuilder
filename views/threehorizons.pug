@@ -1,0 +1,22 @@
+.card.big-card
+  .card-container
+    .three-horizons
+      div.big-image(style='min-height: 300px; background-image: url("'+item.data.hor1+'"); border-radius: 2px 0 0 0;')
+      h6.image-caption.blue-grey.darken-3.white-text Horizon 1
+    .three-horizons
+      div.big-image(style='min-height: 300px; background-image: url("'+item.data.hor2+'")')
+      h6.image-caption.blue-grey.darken-3.white-text Horizon 2
+    .three-horizons
+      div.big-image(style='min-height: 300px; background-image: url("'+item.data.hor3+'"); border-radius: 0 2px 0 0;')
+      h6.image-caption.blue-grey.darken-3.white-text Horizon 3
+
+    div(style='display: block;')
+      div(style="display: flex; flex-wrap: wrap; min-width: 250px; flex: 1; padding: 20px")
+        .three-horizons
+          h5 Three Horizons
+          if item.data.implications
+            h6.red-text(style='text-align: justify') What does the Red Cross have to do to get from Horizon 1, to Horizon 3? How can we prepare? What needs to change?
+            .implications= item.data.implications
+          
+
+  include cardfooter.pug

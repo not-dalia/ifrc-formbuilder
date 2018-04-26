@@ -200,20 +200,58 @@ button#submit:hover {
     display: flex; min-height: 460px; flex-wrap: wrap; min-width: 250px;
 }
 
-.big-card .card-container{
-    display: flex; min-height: 460px; flex-wrap: wrap; min-width: 250px;
-}
-
 .big-card .futures-wheel-trends{
-    height: 100%; width: 35%; float: left; text-align: left; padding: 10px 20px; min-width: 250px;
+    float: left; text-align: left; padding: 10px 20px; min-width: 250px; flex: 3;
 }
 
 .big-card .futures-wheel-img{
-    align-items: stretch; flex: 1; width: 55%; float: left; min-width: 250px; min-height: 250px;
+    align-items: stretch; flex: 6; float: left; min-width: 250px; min-height: 250px; height: 460px;
 }
 
-.big-card .card-action .row{
+.big-card .card-action .row, .big-card .future-wheel-pres-intro.row{
     margin-bottom: 0;
+}
+
+.big-card h7 {
+    font-weight: bold;    
+}
+
+.big-card  h6 {
+    padding: 1.1em 0;
+}
+
+.big-card p {
+   margin-top: 0;    
+}
+
+.future-wheel-pres-col {
+     flex: 1; min-width: 200px; padding: 5px 10px;
+}
+
+.three-horizons {
+    flex: 1; min-width: 200px;
+}
+
+.selected-trends p {
+    display: inline-block;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+.three-horizons h6.image-caption {
+    margin: 0;
+    padding: 1em 0;
+    font-size: 0.8em; 
+    text-transform: uppercase;
+}
+
+.three-horizons .row {
+    margin: 0;
+}
+
+.implications {
+    text-align: justify;
 }
 /**********************************************/
 
@@ -221,60 +259,60 @@ button#submit:hover {
 
 /**********************************************/
 
-nav {
+nav.header {
     height: 100px;
     line-height: 100px;
     border-bottom: 1px #e4e4e4 solid;
 }
 
-nav i,
-nav [class^="mdi-"],
-nav [class*="mdi-"],
-nav i.material-icons {
+nav.header i,
+nav.header [class^="mdi-"],
+nav.header [class*="mdi-"],
+nav.header i.material-icons {
     height: 100px;
     line-height: 80px;
 }
 
-nav .button-collapse i {
+nav.header .button-collapse i {
     height: 100px;
     line-height: 100px;
 }
 
-nav .brand-logo img {
+nav.header .brand-logo img {
     height: 60px;
     margin: 20px 0px;
 }
 
-nav {
+nav.header {
     padding: 0;
 }
 
-nav a {
+nav.header a {
     max-height: 100px;
 }
 
 @media only screen and (min-width: 601px) {
-    nav,
-    nav .nav-wrapper i,
-    nav a.button-collapse,
-    nav a.sidenav-trigger,
-    nav a.sidenav-trigger i,
-    nav a.button-collapse i {
+    nav.header,
+    nav.header .nav-wrapper i,
+    nav.header a.button-collapse,
+    nav.header a.sidenav-trigger,
+    nav.header a.sidenav-trigger i,
+    nav.header a.button-collapse i {
         height: 100px;
         line-height: 80px;
     }
 }
 
 @media only screen and (min-width: 992px) {
-    nav {
+    nav.header {
         padding: 0 15% 0 15%;
     }
-    nav,
-    nav .nav-wrapper i,
-    nav a.button-collapse,
-    nav a.sidenav-trigger,
-    nav a.sidenav-trigger i,
-    nav a.button-collapse i {
+    nav.header,
+    nav.header .nav-wrapper i,
+    nav.header a.button-collapse,
+    nav.header a.sidenav-trigger,
+    nav.header a.sidenav-trigger i,
+    nav.header a.button-collapse i {
         height: 100px;
         line-height: 100px;
     }

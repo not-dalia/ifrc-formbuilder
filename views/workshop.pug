@@ -1,16 +1,19 @@
 extends layout
 
 
+block extranav
+  nav.red.darken-2.center(style='margin-top: 100px')
+    div(class='nav-wrapper')
+      h5.white-text(style="text-transform: uppercase;")= title
 
 block content
   - var avatarPath = '';
   if (avatar && avatar.length > 0) 
     - avatarPath = 'avatar=' + avatar;
-  main(style="padding-top: 50px;")
+  main(style="padding-top: 120px;")
     .container.center
       if thankYou
         h5.green-text Thank you, your answers have been submitted.
-      h4.red-text(style="text-transform: uppercase;")= title
       .row 
         h6.light At various points during the workshop you will be asked to complete forms summarising your tasks. Visit the specified link when asked.
       
@@ -37,5 +40,5 @@ block content
               h5.center See What's Going On
               p.light
                 | Head over to 
-                a(href='/workshops/'+path+'/feed/') 'Workshop Feed' 
+                a(href='/feed/'+path) 'Workshop Feed' 
                 | to see what's people are uploading in workshops as it happens. All of our pictures and messages are found here in one single stream.

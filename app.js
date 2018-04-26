@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 
 
 
+
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -100,6 +101,23 @@ app.get('/workshops/:workshopPath', function (req, res, next) {
       }
       console.log(result[0]);
       res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path: result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath, workshopId: result[0].workshop_id, avatar: req.query.avatar, thankYou: req.query.thankYou });
+    })
+  } catch (err) {
+    next(createError(404));
+  }
+});
+
+app.get('/feed/:workshopPath', function (req, res, next) {
+  try {
+    if (!req.params.workshopPath) throw new Error('Invalid URL');
+    connection.query('SELECT * FROM submissions_extended_data WHERE path = ? ', req.params.workshopPath, function (error, result, fields) {
+      if (error) {
+        next(createError(404));
+        return;
+      }
+      let tasks = result.map(el => { return { title: el.form_title, form_id: el.jotform_id } })
+      console.log(result[0]);
+      res.render('feed', { title: 'Workshop Feed', submissions: result, showHeaderLinks: true, path: req.params.workshopPath });
     })
   } catch (err) {
     next(createError(404));

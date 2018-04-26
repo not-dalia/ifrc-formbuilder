@@ -1,0 +1,69 @@
+.card.big-card
+  .row 
+    .row.future-wheel-pres-intro
+      .col.s12.m12(style='padding: 10px 30px')
+        h5 Polak Game
+        h6.red-text Showing number of people in each quadrant (based on agency and optimism) before and after debates. 
+    .row(style='padding: 10px 30px; display: flex; flex-wrap: wrap;')
+      if !item.data['polakpre[]'] 
+        - item.data['polakpre[]'] = [0,0,0,0]
+      .future-wheel-pres-col.white-text
+        h6.red.darken-2.white-text Before Debates
+        div(style="text-align: center; padding-top: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;") 
+          div.three-horizons.red.darken-2(style='flex: 0 50%; min-height: 110px; padding: 20px; border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") low agency
+            h6.image-caption(style="padding: 5px") optemistic
+            if !item.data['polakpre[]'][0] ||  item.data['polakpre[]'][0] == '' 
+              - item.data['polakpre[]'][0] = 0
+            h4=  item.data['polakpre[]'][0]
+          div.three-horizons.blue-grey.darken-3(style='flex: 0 50%;min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") high agency
+            h6.image-caption(style="padding: 5px") optemistic
+            if !item.data['polakpre[]'][1] ||  item.data['polakpre[]'][1] == '' 
+              - item.data['polakpre[]'][1] = 0
+            h4=  item.data['polakpre[]'][1]
+          div.three-horizons.blue-grey.darken-3(style='flex: 0 50%;min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") low agency
+            h6.image-caption(style="padding: 5px") pessimistic
+            if !item.data['polakpre[]'][2] ||  item.data['polakpre[]'][2] == '' 
+              - item.data['polakpre[]'][2] = 0
+            h4=  item.data['polakpre[]'][2]
+          div.three-horizons.red.darken-2(style='flex: 0 50%;min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") high agency
+            h6.image-caption(style="padding: 5px") pessimistic
+            if !item.data['polakpre[]'][3] ||  item.data['polakpre[]'][3] == '' 
+              - item.data['polakpre[]'][3] = 0
+            h4=  item.data['polakpre[]'][3]
+            
+
+      if !item.data['polakpost[]'] 
+        - item.data['polakpost[]'] = [0,0,0,0]
+      .future-wheel-pres-col.white-text
+        h6.blue-grey.darken-3.white-text After Debates
+        div(style="text-align: center; padding-top: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center") 
+          div.three-horizons.red.darken-2(style='flex: 0 50%; min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") low agency
+            h6.image-caption(style="padding: 5px") optemistic
+            if !item.data['polakpost[]'][0] ||  item.data['polakpost[]'][0] == '' 
+              - item.data['polakpost[]'][0] = 0
+            h4=  item.data['polakpost[]'][0]
+          div.three-horizons.blue-grey.darken-3(style='flex: 0 50%;min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") high agency
+            h6.image-caption(style="padding: 5px") optemistic
+            if !item.data['polakpost[]'][1] ||  item.data['polakpost[]'][1] == '' 
+              - item.data['polakpost[]'][1] = 0
+            h4=  item.data['polakpost[]'][1]
+          div.three-horizons.blue-grey.darken-3(style='flex: 0 50%;min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") low agency
+            h6.image-caption(style="padding: 5px") pessimistic
+            if !item.data['polakpost[]'][2] ||  item.data['polakpost[]'][2] == '' 
+              - item.data['polakpost[]'][2] = 0
+            h4=  item.data['polakpost[]'][2]
+          div.three-horizons.red.darken-2(style='flex: 0 50%;min-height: 110px; padding: 20px;border: 1px solid white') 
+            h6.image-caption(style="padding: 5px") high agency
+            h6.image-caption(style="padding: 5px") pessimistic
+            if !item.data['polakpost[]'][3] ||  item.data['polakpost[]'][3] == '' 
+              - item.data['polakpost[]'][3] = 0
+            h4=  item.data['polakpost[]'][3]
+
+  include cardfooter.pug

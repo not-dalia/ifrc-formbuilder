@@ -1,8 +1,20 @@
 extends layout
 
+block headscript
+  meta(http-equiv="refresh" content="300")
+
+block extranav
+  nav.red.darken-2.center(style='margin-top: 100px')
+    div(class='nav-wrapper')
+      h5.white-text Workshop Feed
+
 block content
-  main(style="padding-top: 50px;")
+  main(style="padding-top: 120px;")
     .container.center
+      if submissions.length == 0
+        .row.center
+          h6.light(style='text-align:center') This workshop does not have any submissions yet.
+
       each item in submissions
         -item.data= JSON.parse(item.data)
         .row
@@ -12,14 +24,15 @@ block content
                 include futureswheel.pug
               when 'futuresWheelPresentation'
                 include futureswheelpres.pug
-              default
-                p= item.data.type
+              when 'threeHorizons'
+                include threehorizons.pug
+              when 'missingTrends'
+                include missingtrends.pug
+              when 'prioritization'
+                include prioritization.pug
+              when 'scenarios'
+                include scenarios.pug
+              when 'polak'
+                include polak.pug
 
-                
-                  
-            //- .card-image(style='background-image:url("https://picsum.photos/420/320?image=0")')
-            //- .card-stacked
-            //-   .card-content
-            //-     p I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. I am a very simple card. I am good at containing small bits of information. 
-            //-   .card-action
-            //-     a(href='#') This is a link
+

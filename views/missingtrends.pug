@@ -1,0 +1,42 @@
+.card.big-card
+  .row 
+    .row.future-wheel-pres-intro
+      .col.s12.m12(style='padding: 10px 30px')
+        h5 Missing Trends
+        h6 The trends that were identified missing by (#{item.avatar}) are:
+        .selected-trends
+          if item.data.trend1
+            p= item.data.trend1
+          if item.data.trend2
+            p= item.data.trend2
+          if item.data.trend3
+            p= item.data.trend3
+          if item.data.trend4
+            p= item.data.trend4
+          if item.data.trend5multi
+            each val in item.data.trend5multi
+              p= val
+    .row(style='padding: 10px 30px; display: flex; flex-wrap: wrap;')
+      if item.data.affectingvolunteers  
+        .future-wheel-pres-col.red-text
+          h6.red.darken-2.white-text How the trends affect volunteers on the ground
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.affectingvolunteers
+              p= item.data.affectingvolunteers
+            
+
+      if item.data.affectingns
+        .future-wheel-pres-col
+          h6.blue-grey.darken-3.white-text What these trends imply for national societies
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.affectingns
+              p= item.data.affectingns
+
+      if item.data.affectingrc
+        .future-wheel-pres-col.red-text
+          h6.red.darken-2.white-text How these trends affect the Red Cross and Red Crescent operationally
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.affectingrc
+              p= item.data.affectingrc
+
+  include cardfooter.pug

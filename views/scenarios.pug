@@ -1,0 +1,28 @@
+.card.big-card
+  .card-container
+    div(style="display: flex; flex-wrap: wrap; width: 100%")
+      if item.data.quadrantphoto
+        .three-horizons
+          div.big-image(style='min-height: 500px; background-image: url("'+item.data.quadrantphoto+'"); border-radius: 2px 0 0 0; flex: 1')
+    
+    div(style="display: flex; flex-wrap: wrap; width: 100%")
+      .three-horizons
+        if item.data.horprob.toLowerCase() == 'high'
+          h6.image-caption.red.darken-2.white-text Horizontal: #{item.data.horprob} #{item.data.horcard}
+        else 
+          h6.image-caption.blue-grey.darken-3.white-text Horizontal: #{item.data.horprob} #{item.data.horcard}
+          
+      .three-horizons
+        if item.data.verprob.toLowerCase() == 'high'
+          h6.image-caption.red.darken-2.white-text Vertical: #{item.data.verprob} #{item.data.vercard}
+        else
+          h6.image-caption.blue-grey.darken-3.white-text Vertical: #{item.data.verprob} #{item.data.vercard}
+
+    div(style="display: flex; flex-wrap: wrap; min-width: 250px; flex: 1; padding: 20px")
+      .three-horizons
+        h5 Scenario: #{item.data.quadrantname}
+        if item.data.quadrantstory
+          .implications= item.data.quadrantstory
+          
+
+  include cardfooter.pug

@@ -1,16 +1,84 @@
 .card.big-card
-  .card-container
-    .futures-wheel-trends 
-      h5 Futures Wheel
-      h6 The trends that were discussed in (#{item.avatar})'s Futures Wheel are:
+  .row 
+    .row.future-wheel-pres-intro
+      .col.s12.m12(style='padding: 10px 30px')
+        h5 Futures Wheel Presentation by (#{item.data.presentingavatar})
+        h6 The trends that were discussed in (#{item.data.presentingavatar})'s Futures Wheel are:
+        .selected-trends
+          if item.data.writedown
+            p= item.data.writedown
+          if item.data.input16
+            p= item.data.input16
+          if item.data.uncertaintrends2
+            each val in item.data.uncertaintrends2
+              p= val
+    .row(style='padding: 10px 30px; display: flex; flex-wrap: wrap;')
+      if item.data.govl1 || item.data.govl2 || item.data.govl3 || item.data.govother  
+        .future-wheel-pres-col.red-text
+          h6.red.darken-2.white-text Government
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.govl1
+              h7 Level 1
+              p= item.data.govl1
+            if item.data.govl2
+              h7 Level 2
+              p= item.data.govl2
+            if item.data.govl3
+              h7 Level 3
+              p= item.data.govl3
+            if item.data.govother
+              h7 Other Notes
+              p= item.data.govother
 
-      ul.browser-default
-        if item.data.whattrends
-          li= item.data.whattrends
-        if item.data.uncertaintrends2
-          each val in item.data.uncertaintrends2
-            li= val
+      if item.data.nsl1 || item.data.nsl2 || item.data.nsl3 || item.data.nsother
+        .future-wheel-pres-col
+          h6.blue-grey.darken-3.white-text National Society Operating Model
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.nsl1
+              h7 Level 1
+              p= item.data.nsl1
+            if item.data.nsl2
+              h7 Level 2
+              p= item.data.nsl2
+            if item.data.nsl3
+              h7 Level 3
+              p= item.data.nsl3
+            if item.data.nslother
+              h7 Other Notes
+              p= item.data.nslother
 
+      if item.data.csl1 || item.data.csl2 || item.data.csl3 || item.data.csother
+        .future-wheel-pres-col.red-text
+          h6.red.darken-2.white-text Civil Society
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.csl1
+              h7 Level 1
+              p= item.data.csl1
+            if item.data.csl2
+              h7 Level 2
+              p= item.data.csl2
+            if item.data.csl3
+              h7 Level 3
+              p= item.data.csl3
+            if item.data.cslother
+              h7 Other Notes
+              p= item.data.cslother
 
-    div.big-image.futures-wheel-img(style="background-image: url('https://picsum.photos/420/320?image=0');") 
+      if item.data.nspl1 || item.data.nspl2 || item.data.nspl3 || item.data.nspother
+        .future-wheel-pres-col
+          h6.blue-grey.darken-3.white-text National Society Programs
+          div(style="text-align: justify; padding-top: 10px") 
+            if item.data.nspl1
+              h7 Level 1
+              p= item.data.nspl1
+            if item.data.nspl2
+              h7 Level 2
+              p= item.data.nspl2
+            if item.data.nspl3
+              h7 Level 3
+              p= item.data.nspl3
+            if item.data.nsplother
+              h7 Other Notes
+              p= item.data.nsplother
+
   include cardfooter.pug

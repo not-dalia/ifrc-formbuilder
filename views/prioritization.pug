@@ -1,0 +1,43 @@
+.card.big-card
+  .row 
+    .row.future-wheel-pres-intro
+      .col.s12.m12(style='padding: 10px 30px')
+        h5 Prioritization of trends and emerging issues
+        h6.red-text What trends and emerging issues are going to be the most impactful for the future?
+        .selected-trends
+          if item.data.trend1
+            p= item.data.trend1
+          if item.data.trend2
+            p= item.data.trend2
+          if item.data.trend3
+            p= item.data.trend3
+          if item.data.trend4
+            p= item.data.trend4
+          if item.data.trend5multi && item.data.trend5multi.length > 0
+            each val in item.data.trend5multi
+              p= val
+    .row(style='padding: 10px 30px; display: flex; flex-wrap: wrap;')
+      if item.data.uncertaintrends1 || item.data.uncertaintrends2  
+        .future-wheel-pres-col.red-text
+          h6.red.darken-2.white-text Uncertain Trends
+          div(style="text-align: center; padding-top: 10px") 
+             .selected-trends
+              if item.data.uncertaintrends1
+                p(style='display: block')= item.data.uncertaintrends1
+              if item.data.uncertaintrends2 && item.data.uncertaintrends2.length > 0
+                each val in item.data.uncertaintrends2
+                  p(style='display: block')= val
+            
+
+      if item.data.certaintrends1 || item.data.certaintrends2  
+        .future-wheel-pres-col.black-text
+          h6.blue-grey.darken-3.white-text Certain Trends
+          div(style="text-align: center; padding-top: 10px") 
+             .selected-trends
+              if item.data.certaintrends1
+                p(style='display: block')= item.data.certaintrends1
+              if item.data.certaintrends2 && item.data.certaintrends2.length > 0
+                each val in item.data.certaintrends2
+                  p(style='display: block')= val
+
+  include cardfooter.pug

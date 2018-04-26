@@ -1,8 +1,11 @@
 .card-action
   .row
-    div(style="width: 100%; text-align: left;") Posted by 
-        span
-        em(style='text-transformation: uppercase')= item.avatar
+    div.grey-text.text-darken-2(style="width: 100%; text-align: left; font-size: 0.9em") Post by 
+        span(style='text-transform: uppercase') "#{item.avatar}"
   .row  
-    div(style="float: left; max-width: 49%")= item.location
-    div(style="float: right; max-width: 49%")= moment(item.date_created).format('MMMM Do YYYY, h:mm a')
+    div.grey-text.text-darken-2(style="float: left; max-width: 49%; ")
+      span(style='font-size: 0.9em') 
+        a(href='/feed/'+item.path class='blue-grey-text text-darken-3') 
+          em #{item.workshop_name} @ #{item.location}
+    div.grey-text.text-darken-2(style="float: right; max-width: 49%")
+      span(style='font-size: 0.9em; padding: 9px 3px;') #{moment(item.date_created).format('MMMM Do YYYY, h:mm a')}

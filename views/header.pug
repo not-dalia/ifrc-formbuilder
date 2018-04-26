@@ -1,21 +1,27 @@
-nav(class="white z-depth-0")
+nav.white.z-depth-0.header
   div(class='nav-wrapper')
-    a(href='#' class='brand-logo')
+    a(href='/' class='brand-logo')
       img(src='/images/IFRC_Logo_small.png')
 
-    if showHeaderLinks
-      a(href="#" data-target="mobile-demo" class="sidenav-trigger blue-grey-text text-darken-3")
-        i(class="material-icons") menu
-
+    
+    a(href="#" data-target="mobile-demo" class="sidenav-trigger blue-grey-text text-darken-3")
+      i(class="material-icons") menu
+      
       ul(id='nav-mobile' class='right hide-on-med-and-down')
         li
-          a(href='/workshops/'+path class='blue-grey-text text-darken-3') Tasks
-        li
-          a(href='/workshops/'+path+'/feed' class='blue-grey-text text-darken-3') Workshop Feed
+          a(href='/form-builder' class='blue-grey-text text-darken-3') Form Builder
+        if showHeaderLinks
+          li
+            a(href='/workshops/'+path class='blue-grey-text text-darken-3') Tasks
+          li
+            a(href='/feed/'+path class='blue-grey-text text-darken-3') Workshop Feed
 
-  if showHeaderLinks
-    ul#mobile-demo.sidenav
+  
+  ul#mobile-demo.sidenav
+    li
+        a(href='/form-builder' class='blue-grey-text text-darken-3') Form Builder
+    if showHeaderLinks
       li
         a(href='/workshops/'+path class='blue-grey-text text-darken-3') Tasks
       li
-        a(href='/workshops/'+path+'/feed' class='blue-grey-text text-darken-3') Workshop Feed
+        a(href='/feed/'+path class='blue-grey-text text-darken-3') Workshop Feed
