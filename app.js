@@ -12,7 +12,6 @@ var usersRouter = require('./routes/users');
 
 
 
-
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -115,9 +114,10 @@ app.get('/feed/:workshopPath', function (req, res, next) {
         next(createError(404));
         return;
       }
-      let tasks = result.map(el => { return { title: el.form_title, form_id: el.jotform_id } })
       console.log(result[0]);
-      res.render('feed', { title: 'Workshop Feed', submissions: result, showHeaderLinks: true, path: req.params.workshopPath });
+      let title = 'Feed';
+      if (result.length > 0) title = result[0].workshop_name + ' Feed';
+      res.render('feed', { title: title, submissions: result, showHeaderLinks: true, path: req.params.workshopPath });
     })
   } catch (err) {
     next(createError(404));
