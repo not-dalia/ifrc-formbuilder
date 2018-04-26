@@ -4,8 +4,8 @@
         span(style='text-transform: uppercase') "#{item.avatar}"
   .row  
     div.grey-text.text-darken-2(style="float: left; max-width: 49%; ")
-      span(style='font-size: 0.9em') 
-        a(href='/feed/'+item.path class='blue-grey-text text-darken-3') 
-          em #{item.workshop_name} @ #{item.location}
+      span(style='font-size: 0.9em; text-decoration: underline;') 
+        em
+          a(href='/feed/'+item.path class='blue-grey-text text-darken-3') #{item.workshop_name} @ #{item.location}
     div.grey-text.text-darken-2(style="float: right; max-width: 49%")
       span(style='font-size: 0.9em; padding: 9px 3px;') #{moment(item.date_created).format('MMMM Do YYYY, h:mm a')}
