@@ -15,7 +15,7 @@ block content
         h6.light At various points during the workshop you will be asked to complete forms summarising your tasks. Visit the specified link when asked.
       
       each task in tasks
-        a.waves-effect.waves.task-button(href!='https://form.jotform.com/' + task.id+'?language='+language+'&workshopId='+workshopId+':'+workshopPath+'&'+avatarPath target='_blank')= task.name
+        a.waves-effect.waves.task-button(href!='https://form.jotform.com/' + task.id+'?language='+language+'&workshopId='+workshopId+':'+workshopPath+'&'+avatarPath)= task.name
      
 
   footer.page-footer.blue-grey.darken-3

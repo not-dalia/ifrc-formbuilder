@@ -33,7 +33,7 @@ function extractData(type, data) {
                 extractedData[el].push(...arr2);
                 break;
             case 'uncertaintrends2': case 'certaintrends2': case 'trend5multi':
-                extractData[el] = data[el].split(/\r?\n/g);
+                extractedData[el] = decodeURIComponent(data[el].replace('+', ' ')).split(/\r?\n/g);
                 break;
             case 'takea': case 'hor1': case 'hor3': case 'hor2': case 'quadrantphoto':
                 extractedData[el] = 'https://www.jotform.com/uploads/jvines/' + data['formID'] + '/' + data['submission_id'] + '/' + data[el];
