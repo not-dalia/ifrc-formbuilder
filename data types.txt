@@ -1,0 +1,105 @@
+Polak
+    submission_id: 4005191098155397268
+    formID: 81145503671957
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: my avatar
+    polakpre[]: ["00","01"]
+    polakpre[]: ["10","11"]
+    polakpost[]: ["002","012"]
+    polakpost[]: ["102","112"]
+
+scenarios
+    submission_id: 4005192708157738977
+    formID: 81148459271966
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: avatar
+    horprob: High
+    horcard: 123
+    verprob: Low
+    vercard: 456
+    quadrantname: name of q
+    quadrantstory: some long story here some long 
+    quadrantphoto: 15232681702632632431917928223580.jpg
+
+Prioritization
+    submission_id: 4005193488155429661
+    formID: 81146369871970
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: avatar
+    uncertaintrends1: 123
+    uncertaintrends2: 234
+    345
+    certaintrends1: 456
+    certaintrends2: 567
+
+    
+
+Missing Trend
+    submission_id: 4005195598155101814
+    formID: 81146852671965
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: av
+    trend1: 1
+    trend2: 2
+    trend3: 3
+    trend4: 4
+    trend5multi: 5
+    affectingvolunteers: asdf
+    affectingns: asdf
+    affectingrc: asdf
+
+
+Futures Wheel
+    submission_id: 4005196218154289733
+    formID: 81147567871971
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: av
+    whattrends: a
+    uncertaintrends2: asdf
+    takea: Photo_7c02b20.jpg
+
+Futures Wheel Presentations
+    submission_id: 4005196808159231393
+    formID: 81147376371964
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: ac
+    presentingavatar: av
+    writedown: 123
+    input16: 123
+    uncertaintrends2: 123
+    govl1: 123
+    govl2: 123
+    govl3: 123
+    govother: 123
+    nsl1: 123
+    nsl2: 123
+    nsl3: 123
+    nsother: 123
+    csl1: 123
+    csl2: 123
+    csl3: 123
+    csother: 123
+    nspl1: 123
+    nspl2: 123
+    nspl3: 123
+    nspother: 123
+
+
+Three Horizons
+    submission_id: 4005197878152240850
+    formID: 81148245971966
+    ip: 128.240.225.18
+    workshopid: test1524708877933
+    avatar: as
+    implications: asdf
+    hor1: 15232681702632632431917928223580.jpg
+    hor3: icons8-camera-enhance-filled-50.png
+    hor2: Photo_1d5574d.jpg
+
+    

@@ -5,10 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 const bodyParser = require('body-parser');
+var jsonify = require('./helper/jsonify');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 
 
 
@@ -45,7 +45,7 @@ app.get('/', function (req, res, next) {
       next(createError(404));
       return;
     }
-    let tasks = result.map(el => { return {title: el.form_title, form_id: el.jotform_id} })
+    let tasks = result.map(el => { return { title: el.form_title, form_id: el.jotform_id } })
     console.log(result[0]);
     res.render('formselect', { title: 'FormBuilder', tasks: tasks });
   })
@@ -84,7 +84,7 @@ app.get('/workshops/:workshopPath', function (req, res, next) {
         return;
       }
       console.log(result[0]);
-      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path:  result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath});
+      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path: result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath, workshopId: result[0].workshop_id, avatar: req.query.avatar, thankYou: req.query.thankYou });
     })
   } catch (err) {
     next(createError(404));
@@ -94,16 +94,17 @@ app.get('/workshops/:workshopPath', function (req, res, next) {
 app.post('/workshops/:workshopPath', function (req, res, next) {
   try {
     if (!req.params.workshopPath) throw new Error('Invalid URL');
-    connection.query('SELECT * FROM generated_workshops WHERE path = ? ', req.params.workshopPath, function (error, result, fields) {
+    let dbObj = jsonify(req.body);
+    connection.query('INSERT INTO submissions SET ? ', dbObj, function (error, result, fields) {
       if (error || result.length == 0) {
-        next(createError(404));
+        next(createError(500));
         return;
       }
-      console.log(result[0]);
-      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path:  result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath, thankYou: true});
+      console.log(req.body);
+      res.redirect('/workshops/' + req.params.workshopPath + '?thankYou=true&avatar=' + encodeURIComponent(dbObj['avatar']));
     })
   } catch (err) {
-    next(createError(404));
+    next(createError(500));
   }
 });
 
