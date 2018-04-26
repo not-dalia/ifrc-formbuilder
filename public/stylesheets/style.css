@@ -179,6 +179,44 @@ button#submit:hover {
 
 /**********************************************/
 
+/********        WORKSHOP FEED        *********/
+
+/**********************************************/
+
+
+.big-card{
+    width: 100%;
+    min-width: 250px;
+
+}
+
+.big-image{
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 2px 0 0;
+}
+
+.big-card .card-container{
+    display: flex; min-height: 460px; flex-wrap: wrap; min-width: 250px;
+}
+
+.big-card .card-container{
+    display: flex; min-height: 460px; flex-wrap: wrap; min-width: 250px;
+}
+
+.big-card .futures-wheel-trends{
+    height: 100%; width: 35%; float: left; text-align: left; padding: 10px 20px; min-width: 250px;
+}
+
+.big-card .futures-wheel-img{
+    align-items: stretch; flex: 1; width: 55%; float: left; min-width: 250px; min-height: 250px;
+}
+
+.big-card .card-action .row{
+    margin-bottom: 0;
+}
+/**********************************************/
+
 /********   OVERRIDING MATERIALIZE    *********/
 
 /**********************************************/

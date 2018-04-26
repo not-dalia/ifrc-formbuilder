@@ -1,0 +1,16 @@
+.card.big-card
+  .card-container
+    .futures-wheel-trends 
+      h5 Futures Wheel
+      h6 The trends that were discussed in (#{item.avatar})'s Futures Wheel are:
+
+      ul.browser-default
+        if item.data.whattrends
+          li= item.data.whattrends
+        if item.data.uncertaintrends2
+          each val in item.data.uncertaintrends2
+            li= val
+
+
+    div.big-image.futures-wheel-img(style="background-image: url('https://picsum.photos/420/320?image=0');") 
+  include cardfooter.pug

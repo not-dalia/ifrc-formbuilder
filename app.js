@@ -12,7 +12,6 @@ var usersRouter = require('./routes/users');
 
 
 
-
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -28,6 +27,8 @@ var connection = mysql.createConnection({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.locals.moment = require('moment');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,8 +41,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', indexRouter);
 
+
 app.get('/', function (req, res, next) {
-  connection.query('SELECT * FROM forms', req.params.workshopPath, function (error, result, fields) {
+  connection.query('SELECT * FROM submissions_extended_data ORDER BY date_created DESC', function (error, result, fields) {
+    if (error || result.length == 0) {
+      next(createError(404));
+      return;
+    }
+    let tasks = result.map(el => { return { title: el.form_title, form_id: el.jotform_id } })
+    console.log(result[0]);
+    res.render('feed', { title: 'Workshop Feed', submissions: result });
+  })
+});
+
+app.get('/form-builder', function (req, res, next) {
+  connection.query('SELECT * FROM forms', function (error, result, fields) {
     if (error || result.length == 0) {
       next(createError(404));
       return;

@@ -21,7 +21,7 @@ const FORM_DATA = {
 };
 
 function extractData(type, data) {
-    let extractedData = {};
+    let extractedData = { type: type};
     FORM_DATA[type].forEach(el => {
         if (data[el] == null) { extractedData[el] = undefined; return; }
         switch (el) {

@@ -1,0 +1,8 @@
+.card-action
+  .row
+    div(style="width: 100%; text-align: left;") Posted by 
+        span
+        em(style='text-transformation: uppercase')= item.avatar
+  .row  
+    div(style="float: left; max-width: 49%")= item.location
+    div(style="float: right; max-width: 49%")= moment(item.date_created).format('MMMM Do YYYY, h:mm a')
