@@ -42,19 +42,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', indexRouter);
 
 
-app.get('/', function (req, res, next) {
-  connection.query('SELECT * FROM submissions_extended_data ORDER BY date_created DESC', function (error, result, fields) {
-    if (error || result.length == 0) {
-      next(createError(404));
-      return;
-    }
-    let tasks = result.map(el => { return { title: el.form_title, form_id: el.jotform_id } })
-    console.log(result[0]);
-    res.render('feed', { title: 'Workshop Feed', submissions: result });
-  })
-});
+// app.get('/', function (req, res, next) {
+//   connection.query('SELECT * FROM submissions_extended_data ORDER BY date_created DESC', function (error, result, fields) {
+//     if (error || result.length == 0) {
+//       next(createError(404));
+//       return;
+//     }
+//     let tasks = result.map(el => { return { title: el.form_title, form_id: el.jotform_id } })
+//     console.log(result[0]);
+//     res.render('feed', { title: 'Workshop Feed', submissions: result });
+//   })
+// });
 
-app.get('/form-builder', function (req, res, next) {
+app.get('/', function (req, res, next) {
   connection.query('SELECT * FROM forms', function (error, result, fields) {
     if (error || result.length == 0) {
       next(createError(404));
@@ -66,6 +66,9 @@ app.get('/form-builder', function (req, res, next) {
   })
 });
 
+app.get('/form-builder', function (req, res, next) {
+  res.redirect('/');
+});
 
 app.post('/generate_workshop', function (req, res, next) {
   try {
