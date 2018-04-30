@@ -11,7 +11,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
-
 var app = express();
 var connection = mysql.createConnection({
   host: process.env.AWS_DB_HOST,
@@ -90,6 +89,22 @@ app.post('/generate_workshop', function (req, res, next) {
     })
   } catch (err) {
     res.json({ success: false, error: err.message });
+  }
+});
+
+app.get('/workshop_details/:workshopPath', function (req, res, next) {
+  try {
+    if (!req.params.workshopPath) throw new Error('Invalid URL');
+    connection.query('SELECT * FROM generated_workshops WHERE path = ? ', req.params.workshopPath, function (error, result, fields) {
+      if (error || result.length == 0) {
+        next(createError(404));
+        return;
+      }
+      console.log(result[0]);
+      res.render('workshop', { title: result[0].workshop_name, language: result[0].language, tasks: JSON.parse(result[0].selected_tasks).tasks, path: result[0].path, showHeaderLinks: true, workshopPath: req.params.workshopPath, workshopId: result[0].workshop_id });
+    })
+  } catch (err) {
+    next(createError(404));
   }
 });
 
